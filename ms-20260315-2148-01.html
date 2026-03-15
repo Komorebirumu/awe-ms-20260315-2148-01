@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Artisan Material Finder | Sustainable Sourcing Tool</title>
+    <meta name="description" content="Find ethically sourced, sustainable, and niche materials for your artisan crafts. AI-powered recommendations for eco-friendly options.">
+    <meta property="og:title" content="Eco-Artisan Material Finder | Sustainable Sourcing Tool">
+    <meta property="og:description" content="Find ethically sourced, sustainable, and niche materials for your artisan crafts. AI-powered recommendations for eco-friendly options.">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c5e3b;
+        }
+        .calculator-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #3e8655;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #3e8655;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2c5e3b;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        #results h3 {
+            color: #2c5e3b;
+            text-align: left;
+        }
+        .recommendation {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border-left: 5px solid #4caf50;
+        }
+        .recommendation strong {
+            color: #3e8655;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #2c5e3b;
+            color: #ffffff;
+            font-size: 0.9em;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+        .ad-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e0e0e0;
+            color: #666;
+            border-radius: 4px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Eco-Artisan Material Finder</h1>
+        <p style="text-align: center; font-size: 1.1em; color: #555;">Discover unique, sustainable, and ethically sourced materials for your next creation.</p>
+
+        <div class="calculator-section">
+            <h2>Find Your Perfect Material</h2>
+            <p>Tell us about your project, and our AI will suggest suitable eco-friendly materials.</p>
+
+            <div class="form-group">
+                <label for="productType">Craft Type / Product:</label>
+                <input type="text" id="productType" placeholder="e.g., Woven Basket, Ceramic Vase, Leather Wallet">
+            </div>
+
+            <div class="form-group">
+                <label for="aesthetic">Desired Aesthetic/Style:</label>
+                <select id="aesthetic">
+                    <option value="">-- Select Aesthetic --</option>
+                    <option value="rustic">Rustic</option>
+                    <option value="minimalist">Minimalist</option>
+                    <option value="bohemian">Bohemian</option>
+                    <option value="modern">Modern</option>
+                    <option value="vintage">Vintage</option>
+                    <option value="organic">Organic</option>
+                    <option value="vibrant">Vibrant</option>
+                    <option value="earthy">Earthy</option>
+                    <option value="other">Other (specify below)</option>
+                </select>
+                <input type="text" id="aestheticOther" placeholder="e.g., intricate, natural patterns" style="display: none; margin-top: 10px;">
+            </div>
+
+            <div class="form-group">
+                <label for="primaryMaterial">Preferred Primary Material Type (Optional):</label>
+                <input type="text" id="primaryMaterial" placeholder="e.g., Cotton, Wood, Recycled Plastic, Hemp">
+            </div>
+
+            <div class="form-group">
+                <label for="sustainabilityFocus">Key Sustainability Feature:</label>
+                <select id="sustainabilityFocus">
+                    <option value="">-- Select Focus --</option>
+                    <option value="recycled">Recycled Content</option>
+                    <option value="biodegradable">Biodegradable</option>
+                    <option value="renewable">Renewable Resource</option>
+                    <option value="low-impact-dye">Low-Impact Dyes</option>
+                    <option value="fair-trade">Fair Trade Certified</option>
+                    <option value="locally-sourced">Locally Sourced</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="upcycled">Upcycled</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Your Approximate Location (for sourcing proximity):</label>
+                <input type="text" id="location" placeholder="e.g., London, UK or Zip Code/Region">
+            </div>
+
+            <button id="findMaterialBtn">Find Sustainable Materials</button>
+        </div>
+
+        <!-- AD_SLOT -->
+        <div class="ad-placeholder">Advertisment Slot</div>
+        <!-- AD_SLOT -->
+
+        <div id="results" style="display: none;">
+            <h3>Your Sustainable Material Recommendations:</h3>
+            <div id="recommendationList">
+                <!-- Recommendations will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Built with ❤️ | AI-generated tool
+    </footer>
+
+    <script>
+        document.getElementById('findMaterialBtn').addEventListener('click', function() {
+            const productType = document.getElementById('productType').value.trim().toLowerCase();
+            const aesthetic = document.getElementById('aesthetic').value;
+            const aestheticOther = document.getElementById('aestheticOther').value.trim().toLowerCase();
+            const primaryMaterial = document.getElementById('primaryMaterial').value.trim().toLowerCase();
+            const sustainabilityFocus = document.getElementById('sustainabilityFocus').value;
+            const location = document.getElementById('location').value.trim().toLowerCase();
+
+            const resultsDiv = document.getElementById('results');
+            const recommendationListDiv = document.getElementById('recommendationList');
+            recommendationListDiv.innerHTML = ''; // Clear previous results
+
+            if (!productType) {
+                alert('Please enter your craft type or product.');
+                return;
+            }
+
+            // --- AI Simulation Logic ---
+            // This is a simplified simulation. A real AI would involve complex data analysis,
+            // NLP for understanding descriptions, and potentially external API calls.
+
+            const recommendations = [];
+
+            // Base material suggestions based on product type
+            if (productType.includes('basket')) {
+                recommendations.push({ material: 'Rattan (responsibly harvested)', properties: 'Lightweight, durable, natural texture.', supplier_type: 'Cooperative', price_range: '$5-$15/kg' });
+                recommendations.push({ material: 'Recycled paper cord', properties: 'Versatile, strong, good for weaving.', supplier_type: 'Manufacturer', price_range: '$3-$10/kg' });
+            }
+            if (productType.includes('vase') || productType.includes('pottery') || productType.includes('ceramic')) {
+                recommendations.push({ material: 'Recycled glass aggregate', properties: 'Adds unique texture and color variations to clay.', supplier_type: 'Recycling Facility', price_range: '$2-$8/kg' });
+                recommendations.push({ material: 'Stoneware clay (locally sourced)', properties: 'Durable, classic finish, reduced transport emissions.', supplier_type: 'Local Clay Supplier', price_range: '$4-$12/kg' });
+            }
+            if (productType.includes('wallet') || productType.includes('bag') || productType.includes('leather')) {
+                recommendations.push({ material: 'Pineapple Leaf Fiber (Piñatex)', properties: 'Leather-like, innovative, vegan.', supplier_type: 'Specialty Supplier', price_range: '$20-$50/sq meter' });
+                recommendations.push({ material: 'Cork Leather', properties: 'Lightweight, waterproof, sustainable harvest.', supplier_type: 'Eco-Material Wholesaler', price_range: '$15-$40/sq meter' });
+                recommendations.push({ material: 'Vegetable-tanned Leather (ethically sourced)', properties: 'Natural tanning process, durable, ages well.', supplier_type: 'Ethical Tannery', price_range: '$10-$30/sq foot' });
+            }
+             if (productType.includes('textile') || productType.includes('clothing') || productType.includes('fabric')) {
+                recommendations.push({ material: 'Organic Cotton (GOTS certified)', properties: 'Soft, breathable, chemical-free.', supplier_type: 'Certified Organic Farm', price_range: '$5-$20/meter' });
+                recommendations.push({ material: 'Hemp Fabric', properties: 'Strong, durable, hypoallergenic, requires less water.', supplier_type: 'Hemp Cooperative', price_range: '$8-$25/meter' });
+                recommendations.push({ material: 'Tencel™ Lyocell', properties: 'Silky smooth, moisture-wicking, made from wood pulp.', supplier_type: 'Lyocell Manufacturer', price_range: '$10-$30/meter' });
+                recommendations.push({ material: 'Recycled Polyester (rPET)', properties: 'Durable, made from plastic bottles.', supplier_type: 'Recycling Plant', price_range: '$4-$15/meter' });
+            }
+             if (productType.includes('jewelry') || productType.includes('ornament')) {
+                recommendations.push({ material: 'Recycled Silver/Gold', properties: 'Precious metals given new life, lower environmental impact.', supplier_type: 'Precious Metal Recycler', price_range: 'Market Rate + Premium' });
+                recommendations.push({ material: 'Tagua Nut', properties: 'Ivory-like appearance, sustainable harvest from palm.', supplier_type: 'Artisan Co-op (Ecuador)', price_range: '$10-$30/kg' });
+                recommendations.push({ material: 'Recycled Glass Beads', properties: 'Unique colors and textures from repurposed glass.', supplier_type: 'Artisan Collective', price_range: '$5-$20/string' });
+            }
+
+            // Add recommendations based on aesthetic
+            if (aesthetic === 'rustic' || aestheticOther.includes('rustic')) {
+                recommendations.push({ material: 'Unfinished Wood Slices', properties: 'Natural, earthy, perfect for rustic decor.', supplier_type: 'Woodland Craftsman', price_range: '$1-$5/piece' });
+            }
+            if (aesthetic === 'minimalist' || aestheticOther.includes('minimalist')) {
+                recommendations.push({ material: 'Smooth, Matte Finish Recycled Acrylic', properties: 'Clean lines, modern feel, versatile colors.', supplier_type: 'Specialty Plastics', price_range: '$15-$40/sq foot' });
+            }
+             if (aesthetic === 'bohemian' || aestheticOther.includes('bohemian')) {
+                recommendations.push({ material: 'Macrame Cotton Cord (undyed)', properties: 'Natural fibers, intricate knotting potential.', supplier_type: 'Textile Mill', price_range: '$4-$12/skein' });
+            }
+            if (aesthetic === 'organic' || aestheticOther.includes('organic')) {
+                 recommendations.push({ material: 'Bamboo Fiber', properties: 'Fast-growing, soft, moisture-wicking.', supplier_type: 'Bamboo Plantation', price_range: '$6-$18/meter' });
+            }
+            if (aesthetic === 'earthy' || aestheticOther.includes('earthy')) {
+                 recommendations.push({ material: 'Natural Clay Pigments', properties: 'Rich, authentic colors for paints or glazes.', supplier_type: 'Geological Supplier', price_range: '$8-$25/kg' });
+            }
+
+
+            // Add recommendations based on sustainability focus
+            if (sustainabilityFocus === 'recycled') {
+                recommendations.push({ material: 'Recycled Ocean Plastic Pellets', properties: 'Addresses plastic pollution, durable.', supplier_type: 'Ocean Cleanup Initiative', price_range: '$10-$30/kg' });
+            }
+            if (sustainabilityFocus === 'biodegradable') {
+                recommendations.push({ material: 'Mushroom Mycelium Composite', properties: 'Fully compostable, can be molded into shapes.', supplier_type: 'Biomaterial Lab', price_range: '$25-$75/kg' });
+            }
+            if (sustainabilityFocus === 'renewable') {
+                 recommendations.push({ material: 'Flax (Linen) Fiber', properties: 'Strong, breathable, from a fast-growing plant.', supplier_type: 'Flax Grower Cooperative', price_range: '$7-$22/kg' });
+            }
+             if (sustainabilityFocus === 'fair-trade') {
+                recommendations.push({ material: 'Fair Trade Certified Wool', properties: 'Ethically sourced, supports artisan communities.', supplier_type: 'Fair Trade Wool Cooperative', price_range: '$12-$35/kg' });
+            }
+             if (sustainabilityFocus === 'locally-sourced') {
+                 // This is highly dependent on the user's location and requires more advanced geo-data.
+                 // For simulation, we'll add a generic placeholder.
+                 recommendations.push({ material: 'Local Timber (certified sustainable)', properties: 'Reduced carbon footprint, supports local economy.', supplier_type: 'Local Sawmill/Forestry', price_range: 'Varies Widely' });
+            }
+            if (sustainabilityFocus === 'vegan') {
+                recommendations.push({ material: 'Kelp Leather', properties: 'Alternative to animal leather, derived from seaweed.', supplier_type: 'Marine Biomaterial Company', price_range: '$18-$45/sq meter' });
+            }
+             if (sustainabilityFocus === 'upcycled') {
+                recommendations.push({ material: 'Upcycled Fabric Scraps', properties: 'Unique patterns and textures, diverts waste.', supplier_type: 'Textile Waste Recycler', price_range: '$2-$8/kg' });
+            }
+
+
+            // Add primary material if specified
+            if (primaryMaterial) {
+                // Filter or boost recommendations that match primaryMaterial
+                const filteredRecs = recommendations.filter(rec => rec.material.toLowerCase().includes(primaryMaterial));
+                if (filteredRecs.length > 0) {
+                    recommendations.unshift(...filteredRecs); // Add matches to the front
+                } else {
+                    // Suggest a generic match if not found
+                    recommendations.push({ material: `${primaryMaterial} (sustainable variant)`, properties: `Seek out recycled or ethically sourced options for ${primaryMaterial}.`, supplier_type: 'Specialty Wholesaler', price_range: 'Varies' });
+                }
+            }
+
+            // --- Deduplicate and finalize ---
+            const uniqueRecommendations = Array.from(new Set(recommendations.map(r => JSON.stringify(r)))).map(r => JSON.parse(r));
+
+            if (uniqueRecommendations.length === 0) {
+                recommendationListDiv.innerHTML = '<p>No specific materials found based on your criteria. Try broadening your search or adjusting parameters!</p>';
+            } else {
+                uniqueRecommendations.forEach(rec => {
+                    const recDiv = document.createElement('div');
+                    recDiv.classList.add('recommendation');
+                    recDiv.innerHTML = `
+                        <strong>Material:</strong> ${rec.material}<br>
+                        <strong>Properties:</strong> ${rec.properties}<br>
+                        <strong>Potential Supplier Type:</strong> ${rec.supplier_type}<br>
+                        <strong>Estimated Price Range:</strong> ${rec.price_range}
+                    `;
+                    recommendationListDiv.appendChild(recDiv);
+                });
+            }
+
+            resultsDiv.style.display = 'block';
+        });
+
+        // Handle conditional display for "Other" aesthetic
+        const aestheticSelect = document.getElementById('aesthetic');
+        const aestheticOtherInput = document.getElementById('aestheticOther');
+        aestheticSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                aestheticOtherInput.style.display = 'block';
+            } else {
+                aestheticOtherInput.style.display = 'none';
+                aestheticOtherInput.value = ''; // Clear the input if 'other' is deselected
+            }
+        });
+
+    </script>
+
+    <!-- AI-GENERATED: Autonomous Wealth Engine -->
+
+</body>
+</html>
